@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_template_lea);
+        setContentView(R.layout.activity_main);
 
         btnScanQR = this.findViewById(R.id.btn_scan);
         btnScanQR.setOnClickListener(this);

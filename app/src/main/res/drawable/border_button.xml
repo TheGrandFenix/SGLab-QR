@@ -9,4 +9,8 @@
         android:topLeftRadius="24dp"
         android:topRightRadius="24dp"/>
 
+    <stroke
+        android:width="2dp"
+        android:color="@color/colorSGLabLogo" />
+
 </shape>
