@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">QR@SGLab</string>
+
+    <string name="lbl__scan">Scan QR</string>
+    <string name="btn__about">About / How to use?</string>
 </resources>
