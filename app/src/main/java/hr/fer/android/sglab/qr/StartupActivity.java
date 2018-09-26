@@ -1,4 +1,4 @@
-package hr.fer.android.qr;
+package hr.fer.android.sglab.qr;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
