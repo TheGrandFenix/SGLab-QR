@@ -1,5 +1,6 @@
 package hr.fer.android.sglab.qr;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
@@ -53,25 +54,9 @@ public final class ScanQRCodeActivity extends AppCompatActivity implements Barco
         barcodeView.pauseAndWait();
 
         if (barcodeResult.getText() != null) {
-            Toast.makeText(this, "Scanned:" + barcodeResult.getText(), Toast.LENGTH_LONG).show();
-            setContentView(R.layout.load_layout_temp);
-            RotateAnimation anim = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-            anim.setInterpolator(new LinearInterpolator());
-            anim.setRepeatCount(Animation.INFINITE);
-            anim.setDuration(1400);
-            findViewById(R.id.logo_circle1).startAnimation(anim);
-
-            RotateAnimation anim2 = new RotateAnimation(0.0f, -360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-            anim2.setInterpolator(new LinearInterpolator());
-            anim2.setRepeatCount(Animation.INFINITE);
-            anim2.setDuration(3000);
-            findViewById(R.id.logo_circle2).startAnimation(anim2);
-
-            RotateAnimation anim3 = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-            anim3.setInterpolator(new LinearInterpolator());
-            anim3.setRepeatCount(Animation.INFINITE);
-            anim3.setDuration(2200);
-            findViewById(R.id.logo_circle3).startAnimation(anim3);
+            Intent nextIntent = new Intent(this, InterfaceActivity.class);
+            nextIntent.putExtra("QRResult", barcodeResult.getText());
+            startActivity(nextIntent);
         }
     }
 
