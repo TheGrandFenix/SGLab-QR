@@ -3,4 +3,5 @@
 
     <string name="lbl__scan">Scan QR</string>
     <string name="btn__about">About / How to use?</string>
+    <string name="lbl__settings">Settings</string>
 </resources>

@@ -74,17 +74,37 @@
     <Button
         android:id="@+id/btn_scan"
         android:layout_width="220dp"
-        android:layout_height="32dp"
+        android:layout_height="40dp"
         android:background="@drawable/border_button"
         android:text="@string/lbl__scan"
         android:textAllCaps="false"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
         android:textColor="@color/colorSGLabLogo"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:layout_constraintVertical_bias="0.422" />
+
+    <Button
+        android:id="@+id/btn_settings"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/border_button"
+        android:text="@string/lbl__settings"
+        android:textAllCaps="false"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorSGLabLogo"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_scan"
+        app:layout_constraintVertical_bias="0.046"/>
 
 </android.support.constraint.ConstraintLayout>

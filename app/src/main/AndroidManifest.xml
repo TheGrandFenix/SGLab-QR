@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="hr.fer.android.sglab.qr">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="hr.fer.android.sglab.qr">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -13,27 +13,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-  
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait">
-        </activity>
-  
         <activity
             android:name=".ScanQRCodeActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".StartupActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
-        <activity android:name=".StartupActivity"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
-            <category android:name="android.intent.category.LAUNCHER"/>
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
-        <activity android:name=".InterfaceActivity" />
-
+        <activity android:name=".InterfaceActivity"/>
+        <activity android:name=".SettingsActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme"/>
     </application>
-</manifest>
 
+</manifest>
