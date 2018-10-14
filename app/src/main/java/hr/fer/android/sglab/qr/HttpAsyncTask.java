@@ -49,12 +49,12 @@ public class HttpAsyncTask extends AsyncTask<String, Integer, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        InterfaceActivity activity = activityReference.get();
+        //InterfaceActivity activity = activityReference.get();
 
         //Check if InterfaceActivity is still active
-        if (activity == null || activity.isFinishing()) return;
+        //if (activity == null || activity.isFinishing()) return;
 
         //Send data to InterfaceActivity if it is still active
-        activity.processData(result);
+        //activity.processData(result);
     }
 }
