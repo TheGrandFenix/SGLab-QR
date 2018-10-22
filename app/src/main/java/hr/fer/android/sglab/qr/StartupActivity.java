@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import hr.fer.android.sglab.qr.R;
+import hr.fer.android.sglab.qr.widgets.CustomLoadingProgressAnimation;
 
 public class StartupActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,11 +31,19 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
 
         Button btnScanQR = this.findViewById(R.id.btn_scan);
         btnScanQR.setOnClickListener(this);
+
+        Button btnSettings = this.findViewById(R.id.btn_settings);
+        btnSettings.setOnClickListener(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        startLoading();
+    }
+
+    private void startLoading() {
         RotateAnimation anim = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         anim.setInterpolator(new LinearInterpolator());
         anim.setRepeatCount(Animation.INFINITE);
@@ -52,7 +61,6 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
         anim3.setRepeatCount(Animation.INFINITE);
         anim3.setDuration(2200);
         findViewById(R.id.logo_circle3).startAnimation(anim3);
-
     }
 
     @Override
@@ -65,6 +73,11 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
                 else {
                     showScanner();
                 }
+                break;
+            case R.id.btn_settings:
+                Intent nextIntent = new Intent(this, SettingsActivity.class);
+                nextIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(nextIntent);
                 break;
         }
     }
