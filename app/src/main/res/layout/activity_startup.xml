@@ -85,7 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.422" />
+        app:layout_constraintVertical_bias="0.376"/>
 
     <Button
         android:id="@+id/btn_settings"
@@ -105,6 +105,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_scan"
-        app:layout_constraintVertical_bias="0.046"/>
+        app:layout_constraintVertical_bias="0.169"/>
 
 </android.support.constraint.ConstraintLayout>

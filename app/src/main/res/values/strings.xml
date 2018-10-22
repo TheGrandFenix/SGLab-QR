@@ -4,4 +4,13 @@
     <string name="lbl__scan">Scan QR</string>
     <string name="btn__about">About / How to use?</string>
     <string name="lbl__settings">Settings</string>
+
+    <string name="lbl__endpoint_url">Endpoint URL</string>
+    <string name="lbl__username">Username</string>
+    <string name="lbl__password">Password</string>
+    <string name="btn__edit">Edit</string>
+    <string name="btn__save">Save</string>
+
+    <string name="message__fill_all_fields">Fill all the fields with required information</string>
+
 </resources>

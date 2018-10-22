@@ -31,6 +31,9 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
 
         Button btnScanQR = this.findViewById(R.id.btn_scan);
         btnScanQR.setOnClickListener(this);
+
+        Button btnSettings = this.findViewById(R.id.btn_settings);
+        btnSettings.setOnClickListener(this);
     }
 
     @Override
