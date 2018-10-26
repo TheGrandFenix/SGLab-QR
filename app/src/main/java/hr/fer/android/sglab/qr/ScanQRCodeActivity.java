@@ -31,6 +31,8 @@ import hr.fer.android.sglab.qr.widgets.CustomLoadingProgressAnimation;
 public final class ScanQRCodeActivity extends AppCompatActivity implements BarcodeCallback, LoaderManager.LoaderCallbacks<WebServiceResult<String>> {
 
     private static final String BARCODE_RESULT = "barcodeResult";
+    static final String QR_RESULT = "QRResult";
+    static final int LOADER_ID = 123;
 
     private DecoratedBarcodeView barcodeView;
 
@@ -66,12 +68,7 @@ public final class ScanQRCodeActivity extends AppCompatActivity implements Barco
         if (barcodeResult.getText() != null) {
             Bundle args = new Bundle();
             args.putString(BARCODE_RESULT, barcodeResult.getText());
-            getSupportLoaderManager().restartLoader(1, args, this);
-
-
-            /*Intent nextIntent = new Intent(this, InterfaceActivity.class);
-            nextIntent.putExtra("QRResult", barcodeResult.getText());
-            startActivity(nextIntent);*/
+            getSupportLoaderManager().restartLoader(LOADER_ID, args, this);
         }
     }
 
@@ -103,6 +100,7 @@ public final class ScanQRCodeActivity extends AppCompatActivity implements Barco
     @Override
     public void onLoadFinished(@NonNull final Loader<WebServiceResult<String>> loader, final WebServiceResult<String> data) {
         progress.dismiss();
+        getSupportLoaderManager().destroyLoader(LOADER_ID);
 
         if (data == null) {
             // možda neki exception
@@ -110,8 +108,8 @@ public final class ScanQRCodeActivity extends AppCompatActivity implements Barco
         }
 
         if (data.getException() == null) {
-            Intent nextIntent = new Intent(this, InterfaceActivity.class);
-            nextIntent.putExtra("QRResult", data.getResult());
+            Intent nextIntent = new Intent(this, MenuActivity.class);
+            nextIntent.putExtra(QR_RESULT, data.getResult());
             startActivity(nextIntent);
         } else {
             //toast

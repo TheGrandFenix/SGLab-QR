@@ -15,10 +15,10 @@ public class HttpAsyncTask extends AsyncTask<String, Integer, String> {
     private static final String USERNAME = "sglabadmin";
     private static final String PASSWORD = "sglabadmin";
 
-    private WeakReference<InterfaceActivity> activityReference;
+    private WeakReference<MenuActivity> activityReference;
 
-    HttpAsyncTask(InterfaceActivity context) {
-        //Get reference to the InterfaceActivity which executed the task
+    HttpAsyncTask(MenuActivity context) {
+        //Get reference to the MenuActivity which executed the task
         activityReference = new WeakReference<>(context);
     }
 
@@ -49,12 +49,12 @@ public class HttpAsyncTask extends AsyncTask<String, Integer, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        //InterfaceActivity activity = activityReference.get();
+        //MenuActivity activity = activityReference.get();
 
-        //Check if InterfaceActivity is still active
+        //Check if MenuActivity is still active
         //if (activity == null || activity.isFinishing()) return;
 
-        //Send data to InterfaceActivity if it is still active
+        //Send data to MenuActivity if it is still active
         //activity.processData(result);
     }
 }

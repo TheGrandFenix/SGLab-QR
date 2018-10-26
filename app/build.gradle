@@ -11,7 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "DEFAULT_ENDPOINT", "\"http://10.0.2.2:8080/api/sglab/machines/\""
+        buildConfigField "String", "DEFAULT_ENDPOINT", "\"http://192.168.0.18:8080/api/sglab/machines/\""
         buildConfigField "String", "DEFAULT_USERNAME", "\"sglabadmin\""
         buildConfigField "String", "DEFAULT_PASSWORD", "\"sglabadmin\""
         buildConfigField "String", "DEFAULT_PREFS_CONTEXT", "\"SGLabQRApp\""

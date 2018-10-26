@@ -16,7 +16,7 @@ import android.util.Base64;
 
 public final class WebServiceTest {
 
-    private static final String DEFAULT_ENDPOINT = "http://enter_ip_here:8080/api/sglab/machines/";
+    private static final String DEFAULT_ENDPOINT = "http://192.168.0.18:8080/api/sglab/machines/";
     private static final String USERNAME = "sglabadmin";
     private static final String PASSWORD = "sglabadmin";
 
