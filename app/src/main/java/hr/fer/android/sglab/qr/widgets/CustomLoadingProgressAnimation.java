@@ -20,7 +20,7 @@ public class CustomLoadingProgressAnimation extends ProgressDialog {
     private Context context;
 
     public CustomLoadingProgressAnimation(final Context context) {
-        super(context, R.style.ProgressDialogTheme);
+        super(context, R.style.AppTheme);
 
         this.context = context;
 

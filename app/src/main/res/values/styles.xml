@@ -6,20 +6,20 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">@color/colorSGLabLogo</item>
+        <item name="android:alertDialogStyle">@style/TestProgressTheme</item>
     </style>
 
-    <style name="ProgressDialogTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFrame">@null</item>
+    <style name="TestProgressTheme">
+        <item name="android:bottomBright">@color/colorWhite</item>
+        <item name="android:bottomDark">@color/colorWhite</item>
+        <item name="android:bottomMedium">@color/colorWhite</item>
+        <item name="android:centerBright">@color/colorWhite</item>
+        <item name="android:centerDark">@color/colorWhite</item>
+        <item name="android:centerMedium">@color/colorWhite</item>
+        <item name="android:fullBright">@color/colorWhite</item>
+        <item name="android:fullDark">@color/colorWhite</item>
+        <item name="android:topBright">@color/colorWhite</item>
+        <item name="android:topDark">@color/colorWhite</item>
     </style>
 
 </resources>
