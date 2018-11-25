@@ -1,28 +1,32 @@
 package hr.fer.android.sglab.qr;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import hr.fer.android.sglab.qr.loaders.IDLoader;
 import hr.fer.android.sglab.qr.loaders.result.WebServiceResult;
+import hr.fer.android.sglab.qr.pojo.Machine;
 import hr.fer.android.sglab.qr.utils.TimeoutHandler;
-import hr.fer.android.sglab.qr.widgets.CustomLoadingProgressAnimation;
 
 import static hr.fer.android.sglab.qr.ScanQRCodeActivity.LOADER_ID;
 import static hr.fer.android.sglab.qr.ScanQRCodeActivity.QR_RESULT;
+import static hr.fer.android.sglab.qr.utils.NumberUtils.formatDouble;
+import static hr.fer.android.sglab.qr.utils.NumberUtils.formatInteger;
 
-public class MenuActivity extends AppCompatActivity implements TimeoutHandler.TimeoutListener, LoaderManager.LoaderCallbacks<WebServiceResult<String>>{
+public class MenuActivity
+        extends AppCompatActivity
+        implements TimeoutHandler.TimeoutListener,
+        LoaderManager.LoaderCallbacks<WebServiceResult<String>> {
 
     private TextView machineName;
     private TextView machineID;
@@ -31,10 +35,7 @@ public class MenuActivity extends AppCompatActivity implements TimeoutHandler.Ti
     private TextView apparentPower;
     private TextView description;
 
-    private CustomLoadingProgressAnimation progress;
-
-    //id, name, description, active power, reactive power, apparent power
-    private List<String> jsonElements;
+    private Machine currentMachine;
 
     private TimeoutHandler timeoutHandler;
 
@@ -45,10 +46,8 @@ public class MenuActivity extends AppCompatActivity implements TimeoutHandler.Ti
 
         timeoutHandler = new TimeoutHandler(this, TimeoutHandler.EVENT_TIMEOUT, this);
 
-        progress = new CustomLoadingProgressAnimation(this);
-
         String qrResultJSON = getIntent().getStringExtra(QR_RESULT);
-        jsonElements = parseJson(qrResultJSON);
+        currentMachine = parseJson(qrResultJSON);
 
         machineName = findViewById(R.id.name);
         machineID = findViewById(R.id.machine_id);
@@ -58,35 +57,34 @@ public class MenuActivity extends AppCompatActivity implements TimeoutHandler.Ti
         description = findViewById(R.id.description);
 
         setInfo();
-
     }
 
-    public List<String> parseJson(String json) {
-        List<String> parsedJson = new ArrayList<>();
+    public Machine parseJson(String json) {
+        Machine machine = new Machine();
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            machine.setId(jsonObject.getInt(Machine.ID));
+            machine.setName(jsonObject.getString(Machine.NAME));
+            machine.setDescription(jsonObject.getString(Machine.DESCRIPTION));
+            machine.setActivePower(jsonObject.getDouble(Machine.ACTIVE_POWER));
+            machine.setReactivePower(jsonObject.getDouble(Machine.REACTIVE_POWER));
+            machine.setApparentPower(jsonObject.getDouble(Machine.APPARENT_POWER));
 
-        json = json.replace("\"", "").replace("{", "").replace("}", "");
-        String[] split = json.split(",");
-
-        for(String element : split){
-            String[] tmp = element.split(":");
-            if(Objects.equals(tmp[1], "null")){
-                parsedJson.add("Not available");
-            }
-            else {
-                parsedJson.add(tmp[1]);
-            }
+        } catch (JSONException e) {
+            Log.e(MenuActivity.class.getSimpleName(), e.toString());
+            e.printStackTrace();
         }
 
-        return parsedJson;
+        return machine;
     }
 
     public void setInfo() {
-        machineName.setText(jsonElements.get(1));
-        machineID.setText(jsonElements.get(0));
-        activePower.setText(jsonElements.get(3));
-        reactivePower.setText(jsonElements.get(4));
-        apparentPower.setText(jsonElements.get(5));
-        description.setText(jsonElements.get(2));
+        machineName.setText(currentMachine.getName());
+        machineID.setText(formatInteger(currentMachine.getId()));
+        activePower.setText(formatDouble(currentMachine.getActivePower()));
+        reactivePower.setText(formatDouble(currentMachine.getReactivePower()));
+        apparentPower.setText(formatDouble(currentMachine.getApparentPower()));
+        description.setText(currentMachine.getDescription());
     }
 
     public void resetTimer() {
@@ -101,27 +99,32 @@ public class MenuActivity extends AppCompatActivity implements TimeoutHandler.Ti
 
     @NonNull
     @Override
-    public Loader<WebServiceResult<String>> onCreateLoader(final int id, @Nullable final Bundle args) {
-        progress.show();
-        return new IDLoader(this, jsonElements.get(0));
+    public Loader<WebServiceResult<String>> onCreateLoader(
+            final int id,
+            @Nullable final Bundle args) {
+
+        return new IDLoader(this, formatInteger(currentMachine.getId()));
     }
 
     @Override
-    public void onLoadFinished(@NonNull final Loader<WebServiceResult<String>> loader, final WebServiceResult<String> data) {
-        progress.dismiss();
+    public void onLoadFinished(
+            @NonNull final Loader<WebServiceResult<String>> loader,
+            final WebServiceResult<String> data) {
 
         if (data == null) {
-            // možda neki exception
+            Toast
+                    .makeText(this, "Something went wrong with HTTP request", Toast.LENGTH_SHORT)
+                    .show();
             return;
         }
 
         if (data.getException() == null) {
-            jsonElements = parseJson(data.getResult());
+            currentMachine = parseJson(data.getResult());
             setInfo();
-
         } else {
-            //toast
-            //CommonUtils.showDialog(getActivity(), data.getException().getMessage());
+            Toast
+                    .makeText(this, data.getException().getMessage(), Toast.LENGTH_SHORT)
+                    .show();
         }
     }
 

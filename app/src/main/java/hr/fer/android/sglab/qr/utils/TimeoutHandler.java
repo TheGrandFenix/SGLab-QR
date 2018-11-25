@@ -30,7 +30,7 @@ public class TimeoutHandler {
     public TimeoutHandler(Context context, String timeoutAction, TimeoutHandler.TimeoutListener listener) {
         lastTimer = SystemClock.elapsedRealtime();
         this.context = context.getApplicationContext();
-        timeoutInMiliSeconds = 5000;
+        timeoutInMiliSeconds = 3000;
         this.timeoutAction = timeoutAction;
         timeoutListener = listener;
 
