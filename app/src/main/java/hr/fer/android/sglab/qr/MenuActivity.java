@@ -1,12 +1,18 @@
 package hr.fer.android.sglab.qr;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +24,7 @@ import hr.fer.android.sglab.qr.loaders.result.WebServiceResult;
 import hr.fer.android.sglab.qr.pojo.Machine;
 import hr.fer.android.sglab.qr.utils.TimeoutHandler;
 
+import static android.app.PendingIntent.getActivity;
 import static hr.fer.android.sglab.qr.ScanQRCodeActivity.LOADER_ID;
 import static hr.fer.android.sglab.qr.ScanQRCodeActivity.QR_RESULT;
 import static hr.fer.android.sglab.qr.utils.NumberUtils.formatDouble;
@@ -33,7 +40,8 @@ public class MenuActivity
     private TextView activePower;
     private TextView reactivePower;
     private TextView apparentPower;
-    private TextView description;
+    private Spinner activePowerSpinner;
+    private Button setReferenceButton;
 
     private Machine currentMachine;
 
@@ -54,7 +62,31 @@ public class MenuActivity
         activePower = findViewById(R.id.active_power);
         reactivePower = findViewById(R.id.reactive_power);
         apparentPower = findViewById(R.id.apparent_power);
-        description = findViewById(R.id.description);
+        activePowerSpinner = findViewById(R.id.active_power_spinner);
+        setReferenceButton = findViewById(R.id.set_reference_button);
+        setReferenceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+                builder.setMessage("Generic message");
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+        String[] activePowerSpinnerItems = new String[] {"0.1", "0.2", "0.3"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, activePowerSpinnerItems);
+        //set the spinners adapter to the previously created one.
+        activePowerSpinner.setAdapter(adapter);
 
         setInfo();
     }
@@ -84,7 +116,6 @@ public class MenuActivity
         activePower.setText(formatDouble(currentMachine.getActivePower()));
         reactivePower.setText(formatDouble(currentMachine.getReactivePower()));
         apparentPower.setText(formatDouble(currentMachine.getApparentPower()));
-        description.setText(currentMachine.getDescription());
     }
 
     public void resetTimer() {
