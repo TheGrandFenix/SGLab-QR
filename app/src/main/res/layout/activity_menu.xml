@@ -251,8 +251,11 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="8dp"
+                    android:background="@color/colorSGLabLogo"
                     android:text="Set"
+                    android:textColor="@color/colorWhite"
                     app:layout_constraintBottom_toTopOf="@+id/set_autostop_reference_button"
+                    app:layout_constraintCircleRadius="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/active_power_spinner"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -263,7 +266,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
+                    android:background="@android:color/holo_green_dark"
                     android:text="Start"
+                    android:textColor="@color/colorWhite"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/set_autostop_reference_button"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -274,7 +279,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
+                    android:background="?android:attr/colorPressedHighlight"
                     android:text="Stop"
+                    android:textColor="@color/colorWhite"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/set_autostart_reference_button" />
