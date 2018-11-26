@@ -1,5 +1,6 @@
 package hr.fer.android.sglab.qr;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,9 +23,10 @@ import org.json.JSONObject;
 import hr.fer.android.sglab.qr.loaders.IDLoader;
 import hr.fer.android.sglab.qr.loaders.result.WebServiceResult;
 import hr.fer.android.sglab.qr.pojo.Machine;
+import hr.fer.android.sglab.qr.utils.NumberUtils;
 import hr.fer.android.sglab.qr.utils.TimeoutHandler;
+import hr.fer.android.sglab.qr.widgets.SendReferenceAsyncTask;
 
-import static android.app.PendingIntent.getActivity;
 import static hr.fer.android.sglab.qr.ScanQRCodeActivity.LOADER_ID;
 import static hr.fer.android.sglab.qr.ScanQRCodeActivity.QR_RESULT;
 import static hr.fer.android.sglab.qr.utils.NumberUtils.formatDouble;
@@ -41,14 +43,13 @@ public class MenuActivity
     private TextView reactivePower;
     private TextView apparentPower;
     private Spinner activePowerSpinner;
-    private Button setReferenceButton;
 
     private Machine currentMachine;
 
     private TimeoutHandler timeoutHandler;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
@@ -63,30 +64,81 @@ public class MenuActivity
         reactivePower = findViewById(R.id.reactive_power);
         apparentPower = findViewById(R.id.apparent_power);
         activePowerSpinner = findViewById(R.id.active_power_spinner);
-        setReferenceButton = findViewById(R.id.set_reference_button);
-        setReferenceButton.setOnClickListener(new View.OnClickListener() {
+
+        String[] activePowerSpinnerItems = NumberUtils
+                .makeStringSequenceOfFloats(0.4f, 11.5f, 0.1f);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_dropdown_item, activePowerSpinnerItems);
+        activePowerSpinner.setAdapter(adapter);
+
+        Button setPrefReferenceButton = findViewById(R.id.set_reference_button);
+        setPrefReferenceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                final Context currentContext = view.getContext();
+                AlertDialog.Builder builder = new AlertDialog.Builder(currentContext);
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        new SendReferenceAsyncTask(currentContext, currentMachine.getId())
+                                .execute("pref", activePowerSpinner.getSelectedItem().toString());
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 });
-                builder.setMessage("Generic message");
+                builder.setMessage("Send reference?");
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
         });
 
-        String[] activePowerSpinnerItems = new String[] {"0.1", "0.2", "0.3"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, activePowerSpinnerItems);
-        //set the spinners adapter to the previously created one.
-        activePowerSpinner.setAdapter(adapter);
+        Button setAutoStartReferenceButton = findViewById(R.id.set_autostart_reference_button);
+        setAutoStartReferenceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Context currentContext = view.getContext();
+                AlertDialog.Builder builder = new AlertDialog.Builder(currentContext);
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        new SendReferenceAsyncTask(currentContext, currentMachine.getId())
+                                .execute("start", true);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+                builder.setMessage("Start machine?");
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+        Button setAutoStopReferenceButton = findViewById(R.id.set_autostop_reference_button);
+        setAutoStopReferenceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Context currentContext = view.getContext();
+                AlertDialog.Builder builder = new AlertDialog.Builder(currentContext);
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        new SendReferenceAsyncTask(currentContext, currentMachine.getId())
+                                .execute("stop", true);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+                builder.setMessage("Stop machine?");
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
         setInfo();
     }
