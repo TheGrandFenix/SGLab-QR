@@ -13,10 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".ScanQRCodeActivity"
-            android:screenOrientation="portrait">
-        </activity>
+
+        <!-- Main Start Activity -->
         <activity
             android:name=".StartupActivity"
             android:screenOrientation="portrait"
@@ -27,9 +25,19 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <!-- QR Scanner Activity -->
+        <activity
+            android:name=".ScanQRCodeActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Interaction Panel Activity -->
         <activity android:name=".MenuActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme"/>
+
+        <!-- IP Settings Activity -->
         <activity android:name=".SettingsActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme"/>

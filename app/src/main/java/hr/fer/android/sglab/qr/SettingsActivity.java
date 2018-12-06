@@ -54,7 +54,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 username.setEnabled(true);
                 password.setEnabled(true);
 
-                btnEdit.setVisibility(View.INVISIBLE);
+                btnEdit.setVisibility(View.GONE);
                 btnSave.setVisibility(View.VISIBLE);
                 break;
             case (R.id.btn_save) :

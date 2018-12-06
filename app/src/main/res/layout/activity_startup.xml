@@ -32,6 +32,7 @@
                 android:layout_width="40dp"
                 android:layout_height="36dp"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/small_logo_circle"
                 android:paddingTop="3dp"
                 app:srcCompat="@drawable/sglab_logo_circle_3"
                 tools:layout_editor_absoluteX="106dp"
@@ -42,6 +43,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/medium_logo_circle"
                 app:srcCompat="@drawable/sglab_logo_circle_2"
                 tools:layout_editor_absoluteX="97dp"
                 tools:layout_editor_absoluteY="207dp" />
@@ -53,6 +55,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:adjustViewBounds="false"
+                android:contentDescription="@string/large_logo_circle"
                 app:srcCompat="@drawable/sglab_logo_circle_1"
                 tools:layout_editor_absoluteX="79dp"
                 tools:layout_editor_absoluteY="198dp" />
@@ -64,6 +67,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:contentDescription="@string/logo_text"
             app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
             app:layout_constraintTop_toTopOf="@+id/relativeLayout"
             app:layout_constraintVertical_bias="0.0"
@@ -73,6 +77,7 @@
 
     <Button
         android:id="@+id/btn_scan"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="220dp"
         android:layout_height="40dp"
         android:background="@drawable/border_button"
@@ -85,16 +90,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.376"/>
+        app:layout_constraintVertical_bias="0.376" />
 
     <Button
         android:id="@+id/btn_settings"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="220dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/border_button"
         android:text="@string/lbl__settings"
         android:textAllCaps="false"
@@ -105,6 +111,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_scan"
-        app:layout_constraintVertical_bias="0.169"/>
+        app:layout_constraintVertical_bias="0.169" />
 
 </android.support.constraint.ConstraintLayout>

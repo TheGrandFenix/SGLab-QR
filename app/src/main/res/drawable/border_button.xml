@@ -4,13 +4,9 @@
 
     <solid android:color="@color/colorWhite" />
 
-    <corners android:bottomRightRadius="24dp"
-        android:bottomLeftRadius="24dp"
-        android:topLeftRadius="24dp"
-        android:topRightRadius="24dp"/>
-
-    <stroke
-        android:width="2dp"
-        android:color="@color/colorSGLabLogo" />
+    <corners android:bottomRightRadius="8dp"
+        android:bottomLeftRadius="8dp"
+        android:topLeftRadius="8dp"
+        android:topRightRadius="8dp"/>
 
 </shape>

@@ -68,7 +68,7 @@ public class MenuActivity
         String[] activePowerSpinnerItems = NumberUtils
                 .makeStringSequenceOfFloats(0.4f, 11.5f, 0.1f);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_dropdown_item, activePowerSpinnerItems);
+                this, R.layout.custom_spinner_element, activePowerSpinnerItems);
         activePowerSpinner.setAdapter(adapter);
 
         Button setPrefReferenceButton = findViewById(R.id.set_reference_button);
