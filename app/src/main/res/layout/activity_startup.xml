@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="25dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="208dp">
+
+            <ImageView
+                android:id="@+id/logo_circle3"
+                android:layout_width="40dp"
+                android:layout_height="36dp"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/small_logo_circle"
+                android:paddingTop="3dp"
+                app:srcCompat="@drawable/sglab_logo_circle_3"
+                tools:layout_editor_absoluteX="106dp"
+                tools:layout_editor_absoluteY="217dp" />
+
+            <ImageView
+                android:id="@+id/logo_circle2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/medium_logo_circle"
+                app:srcCompat="@drawable/sglab_logo_circle_2"
+                tools:layout_editor_absoluteX="97dp"
+                tools:layout_editor_absoluteY="207dp" />
+
+            <ImageView
+                android:id="@+id/logo_circle1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:adjustViewBounds="false"
+                android:contentDescription="@string/large_logo_circle"
+                app:srcCompat="@drawable/sglab_logo_circle_1"
+                tools:layout_editor_absoluteX="79dp"
+                tools:layout_editor_absoluteY="198dp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/logo_text"
+            android:layout_width="143dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:contentDescription="@string/logo_text"
+            app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+            app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/sglab_logo_text_only"
+            tools:layout_editor_absoluteX="173dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_scan"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:background="@drawable/border_button"
+        android:text="@string/lbl__scan"
+        android:textAllCaps="false"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorSGLabLogo"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.376" />
+
+    <Button
+        android:id="@+id/btn_settings"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/border_button"
+        android:text="@string/lbl__settings"
+        android:textAllCaps="false"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorSGLabLogo"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_scan"
+        app:layout_constraintVertical_bias="0.169" />
+
+</android.support.constraint.ConstraintLayout>
